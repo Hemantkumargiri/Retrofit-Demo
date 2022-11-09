@@ -11,9 +11,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static String BASE_URL = "http://cap01.cachatto.co.in/cls/cncm-api/v1/";
+    public static String BASE_URL = "http://cap01.cachatto.co.in/cls/cncm-api/v1/";
     private static Retrofit retrofit = null;
-
+//    /cls/api/file/v1/servers/{portal_id}/files/{path}
 
     public static Retrofit getClient() {
         if (retrofit == null) {

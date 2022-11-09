@@ -14,25 +14,30 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.retrofitdemo.R;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import ApiInterface.ApiInterface;
 import ApiInterface.RetrofitClient;
 import Model.SystemInfo;
 import Model.UserParams;
 import Model.UserResponse;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btn_login;
     EditText et_uId,et_pid,et_cid,et_gid;
     ProgressBar pg_bar;
-
+    private Retrofit retrofit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,18 +106,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+
+
+      /*  body.setClientVer("CSC-W v1.0.0.1");
+        body.setTunVer("ncmv1.0.0");
+        body.setOsVer("Windows 10 Pro 21H2");
+        body.setOsBuild("19044.1415");
+        body.setCpu("Intel(R) Core(TM)
+ i5-9400F CPU @ 2.90GHz");
+        body.setCpuUsagePercent("37");
+        body.setTotalRam("4GB");
+        body.setFreeRam("2GB");*/
+
+
+
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(180, TimeUnit.SECONDS)
+                .connectTimeout(180, TimeUnit.SECONDS)
+                .build();
+        retrofit = new Retrofit.Builder()
+                .baseUrl(RetrofitClient.BASE_URL)
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ApiInterface api = retrofit.create(ApiInterface.class);
         Map<String, String> map = new HashMap<>();
         map.put("Accept","application/json");
         map.put("X-Cachatto-Company-ID", CompanyId);
         map.put("X-Cachatto-User_ID", UserId);
 
-
-
+        Log.e("map", new Gson().toJson(map));
         UserParams body = new UserParams();
-        SystemInfo systemInfo = new SystemInfo();
+
         body.setUserId(UserId);
         body.setUserPwd(PasswordId);
         body.setDeviceUuid("daac3291ca4a93e7-09a923-7fb34");
+        SystemInfo systemInfo = new SystemInfo();
         systemInfo.setClientVer("CSC-W v1.0.0.1");
         systemInfo.setTunVer("ncmv1.0.0");
         systemInfo.setOsVer("Windows 10 Pro 21H2");
@@ -121,21 +150,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         systemInfo.setCpuUsagePercent("37");
         systemInfo.setTotalRam("4GB");
         systemInfo.setFreeRam("2GB");
+
+        Log.e("systemInfo", new Gson().toJson(systemInfo));
+
         body.setSystemInfo(systemInfo);
 
-      /*  body.setClientVer("CSC-W v1.0.0.1");
-        body.setTunVer("ncmv1.0.0");
-        body.setOsVer("Windows 10 Pro 21H2");
-        body.setOsBuild("19044.1415");
-        body.setCpu("Intel(R) Core(TM) i5-9400F CPU @ 2.90GHz");
-        body.setCpuUsagePercent("37");
-        body.setTotalRam("4GB");
-        body.setFreeRam("2GB");*/
-
-
-
-        ApiInterface apiService = RetrofitClient.getClient().create(ApiInterface.class);
-        Call<UserResponse> call = apiService.fetchUser(map,body);
+        Log.e("body", new Gson().toJson(body));
+        Call<UserResponse> call = api.fetchUser(map,body);
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response)
