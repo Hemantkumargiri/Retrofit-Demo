@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Activity.MainActivity">
+
+    <ProgressBar
+        android:id="@+id/pg_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/login_id"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_lid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/login_id" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/login_password"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_pid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/login_password"
+            app:passwordToggleEnabled="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/company_id"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_cid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/company_id" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/gateway"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/et_gid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="@string/gateway" />
+
+
+        <!--    <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="@string/login_id"
+                android:layout_margin="10dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_lid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:passwordToggleEnabled="true"
+                android:layout_margin="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_pid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/login_password" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_margin="10dp">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_cid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/company_id" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_margin="10dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_gateway"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/gateway" />
+            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="@string/login" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
